@@ -2,30 +2,40 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://angebotpilot.runasp.net; img-src 'self' data: blob: https://angebotpilot.runasp.net; worker-src 'self' blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://angebotpilot.runasp.net; img-src 'self' data: blob: https://angebotpilot.runasp.net; worker-src 'self' blob:; script-src 'self' 'sha256-QUfqa0xzAI5CHQYPUcWgh9U9B22dEZ2eiQPqRs3SUS8='; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="no-referrer" />
     <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#2F45D8" />
     <meta name="description" content="AngebotPilot – Angebote erstellen, nachfassen und in Aufträge umwandeln." />
+    <!-- Applies the stored theme and language before the first paint (no light flash in dark mode). Mirrors src/lib/theme.ts and src/lib/i18n.tsx; the CSP allows it by hash. -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        try {
+          var pref = localStorage.getItem('ap.theme');
+          var dark = pref === 'dark' || (pref !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          root.setAttribute('data-theme', dark ? 'dark' : 'light');
+          root.style.colorScheme = dark ? 'dark' : 'light';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', dark ? '#171B23' : '#2F45D8');
+          var lang = localStorage.getItem('ap.locale');
+          if (lang === 'de' || lang === 'en') root.lang = lang;
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>AngebotPilot</title>
-    <script type="module" crossorigin src="/Angebot.Pilot.App/assets/index-CVg150AW.js"></script>
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/rolldown-runtime-CbXtAM7H.js">
+    <script type="module" crossorigin src="/Angebot.Pilot.App/assets/index-CTQFTf_q.js"></script>
     <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/preload-helper-iBnjFnrX.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/api-CU3_yqNE.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/dist-B637f1gW.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/x-BMpw9bwc.js">
+    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/auth-n68dByHW.js">
+    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/dist-BOCEh3S2.js">
     <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/removable-Bm-0N_6m.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/format-BX-cZj15.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/useMutation-G-_yzOZe.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/auth-CPNAF6et.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/es2015-D7CfXd8u.js">
-    <link rel="modulepreload" crossorigin href="/Angebot.Pilot.App/assets/dist-DiL0dA6C.js">
-    <link rel="stylesheet" crossorigin href="/Angebot.Pilot.App/assets/index-BioIxngM.css">
+    <link rel="stylesheet" crossorigin href="/Angebot.Pilot.App/assets/index-BDJc_tfg.css">
   </head>
   <body>
-    <noscript>Bitte aktivieren Sie JavaScript, um AngebotPilot zu nutzen.</noscript>
+    <noscript>Bitte aktivieren Sie JavaScript, um AngebotPilot zu nutzen. / Please enable JavaScript to use AngebotPilot.</noscript>
     <div id="root"></div>
   </body>
 </html>

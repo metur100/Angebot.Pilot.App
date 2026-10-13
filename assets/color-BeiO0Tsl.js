@@ -1,1 +1,0 @@
-function e(e){let t=/^#?([0-9a-f]{6})$/i.exec(e.trim());if(!t)return null;let n=t[1],r=e=>{let t=parseInt(n.slice(e,e+2),16)/255;return t<=.03928?t/12.92:((t+.055)/1.055)**2.4};return 1.05/(.2126*r(0)+.7152*r(2)+.0722*r(4)+.05)}function t(t){let n=t?e(t):null;return n!==null&&n>=4.5?t:`#2F45D8`}export{t as n,e as t};
