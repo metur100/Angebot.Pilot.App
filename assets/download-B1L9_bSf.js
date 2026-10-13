@@ -1,0 +1,1 @@
+function e(e,t){let n=URL.createObjectURL(e),r=document.createElement(`a`);r.href=n,r.download=t,r.rel=`noopener`,r.style.display=`none`,document.body.appendChild(r),r.click(),r.remove(),window.setTimeout(()=>URL.revokeObjectURL(n),3e4)}function t(e=new Date){return e.toISOString().slice(0,10)}export{t as n,e as t};
